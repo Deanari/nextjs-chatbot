@@ -23,9 +23,10 @@ Hello there.
   - Go to https://huggingface.co/ and create a free account
   - Go to settings - access token to create your auth token, olny read access is required
   - Paste your token in your .env as HUGGINGFACE_API_KEY
-* Create Prisma's schema with 
+* Create Prisma's schema and mockdata with 
  `npx prisma generate` 
  `npx prisma db push`
+ `node scripts/seed.ts` this will create your default chatbots
 * You can now run the project with `npm run dev`
 
 ### How do I use this? ###
@@ -35,7 +36,12 @@ Hello there.
 * Create a bot and talk to it (be aware that the integration is using a simple model so keep your questions precise);
   
 ### How do I run tests ###
+* Create a new test user in the app and store set TEST_USER_NAME and TEST_USER_PASSWORD in your .env
 * run `npx paywright test`
+  
+### How do I see the schema ###
+* run `npx prisma studio` and navigate to http://localhost:5555
 
 ### Final thoughts ###
-There is a lot to polish, env variables, cleanup, more tests.
+There is a lot to polish, env variables, cleanup, more tests. 
+TODO: http://localhost:3000/ to .env

@@ -2,10 +2,10 @@ export async function login(page) {
     await page.goto('http://localhost:3000/sign-in?redirect_url=http%3A%2F%2Flocalhost%3A3000%2F');
 
     await page.getByRole('textbox', { name: 'Username' }).click();
-    await page.getByRole('textbox', { name: 'Username' }).fill('Playwright-test');
+    await page.getByRole('textbox', { name: 'Username' }).fill(process.env.TEST_USER_NAME);
     await page.getByRole('button', { name: 'Continue', exact: true }).click();
     await page.getByRole('textbox', { name: 'Password' }).click();
-    await page.getByRole('textbox', { name: 'Password' }).fill('testingA123$');
+    await page.getByRole('textbox', { name: 'Password' }).fill(process.env.TEST_USER_PASSWORD);
 
     await page.getByRole('button', { name: 'Continue' }).click();
 }
