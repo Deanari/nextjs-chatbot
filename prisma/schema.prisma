@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearchPostgres"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Chatbot {
+  id            String @id @default(uuid())
+  userId        String
+  userName      String
+  src           String
+  name          String @db.Text //this enables longer characters and make it searchable
+  description   String @db.Text
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  messages      Message[]
+
+  @@index([name])
+}
+
+enum Role {
+  user
+  system
+}
+
+model Message {
+  id            String @id @default(uuid())
+  role          Role
+  content       String @db.Text
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  chatbotId     String
+  userId        String
+
+  chatbot   Chatbot @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
+
+  @@index([chatbotId])
+}
+
+// each time something changes here run `npx prisma generate` to build and `npx prisma db push` to upload it to provider (neondb)
