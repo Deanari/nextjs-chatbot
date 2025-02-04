@@ -11,7 +11,8 @@ import { Button } from "@/components/ui/button";
 import { Copy } from "lucide-react";
 
 export interface ChatMessageProps {
-    role: "system" | "user"
+    id?: string;
+    role: "system" | "user";
     content?: string;
     isLoading?: boolean;
     src?: string;
@@ -46,7 +47,7 @@ export const ChatMessage = ({
                         size={5}
                         color={theme === "light" ? "black" : "white"} 
                     />
-                    : content
+                    : <p> {content} </p>
                 }
 
             </div>

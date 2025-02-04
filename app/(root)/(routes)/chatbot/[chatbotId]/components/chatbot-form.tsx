@@ -52,10 +52,10 @@ const ChatbotForm = ({ initialData }: ChatbotFormProps) => {
         try {
             if (initialData) {
                 // Update
-                await axios.patch(`/api/chat/${initialData.id}`, values);
+                await axios.patch(`/api/chatbot/${initialData.id}`, values);
             } else {
                 // Create
-                await axios.post("/api/chat", values);
+                await axios.post("/api/chatbot", values);
             }
 
             toast({

@@ -27,7 +27,7 @@ const ChatHeader = ({ chatbot }: ChatHeaderProps) => {
 
     const onDelete = async () => {
         try {
-            await axios.delete(`/api/chat/${chatbot.id}`);
+            await axios.delete(`/api/chatbot/${chatbot.id}`);
             toast({
                 description: "Success"
             });
@@ -71,7 +71,7 @@ const ChatHeader = ({ chatbot }: ChatHeaderProps) => {
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="secondary" size="icon">
-                            <MoreVertical />
+                            <MoreVertical data-testid="bot-options-menu"/>
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
@@ -79,7 +79,7 @@ const ChatHeader = ({ chatbot }: ChatHeaderProps) => {
                             <Edit className="w-4 h-4 mr-2" />
                             Edit
                         </DropdownMenuItem>
-                        <DropdownMenuItem onClick={onDelete}>
+                        <DropdownMenuItem onClick={onDelete} data-testid="delete-bot">
                             <Trash className="w-4 h-4 mr-2" />
                             Delete
                         </DropdownMenuItem>

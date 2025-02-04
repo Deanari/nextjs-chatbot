@@ -8,7 +8,7 @@ export async function POST(req: Request) {
         const user = await currentUser();
         const { src, name, description } = body;
 
-        if (!user || !user.id || !user.firstName) {
+        if (!user || !user.id || (!user.username && !user.firstName)) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
 
@@ -16,10 +16,12 @@ export async function POST(req: Request) {
             return new NextResponse("Missing required fields", { status: 400 });
         }
 
+        const userName = user.firstName || user.username
+
         const chatbot = await prismadb.chatbot.create({
             data: {
                 userId: user.id,
-                userName: user.firstName,
+                userName: userName!,
                 src,
                 name,
                 description,

@@ -19,13 +19,13 @@ export const NavBar = () => {
                 <MobileSidebar />
                 <Link href='/'>
                 <h1 className={cn("hidden md:block text-xl md:text-3xl font-bold text-primary", font.className)}> 
-                    ReflexAI
+                    Chatbot AI
                 </h1>
                 </Link>
             </div>
             <div className="flex items-center gap-x-3">
                 <ModeToggle />
-                <UserButton />
+                <UserButton data-testid="user-button"/>
             </div>
         </div>
     )
