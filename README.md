@@ -2,6 +2,9 @@
 
 Hello there.
 
+> [!IMPORTANT]
+> If you want to just see this in action here is a loom video: https://www.loom.com/share/4f25de3ea7654924b7c49a9162656a58?sid=6d0320ba-229a-4033-98f0-45b2f109596f
+
 ### How do I get set up? ###
 * npm install
 * Create an .env file with the following variables

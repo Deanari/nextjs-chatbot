@@ -5,11 +5,8 @@ import { NextResponse } from "next/server";
 import prismadb from "@/lib/prismadb";
 import { fetchAIResponse } from "@/lib/huggingface";
 
-export async function POST(
-    request: Request,
-    { params }: { params: { chatId: string } }
-
-) {
+export async function POST(request: Request, props: { params: Promise<{ chatId: string }> }) {
+    const params = await props.params;
     try {
         const { prompt } = await request.json();
         const user = await currentUser();
